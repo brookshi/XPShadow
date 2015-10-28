@@ -9,58 +9,72 @@
     xmlns:xp="using:XP">
 
     <Grid>
-        <StackPanel>
-            <StackPanel Margin="0, 10, 0, 0" Orientation="Horizontal" Height="200" Background="#EEEEEE" >
-                <xp:Shadow Z_Depth="1">
-                    <Border Width="100" Height="100" Background="White"/>
-                </xp:Shadow>
-                <xp:Shadow Z_Depth="2" Margin="20, 0, 0, 0">
-                    <Border Width="100" Height="100" Background="White"/>
-                </xp:Shadow>
-                <xp:Shadow Z_Depth="3" Margin="20, 0, 0, 0">
-                    <Border Width="100" Height="100" Background="White"/>
-                </xp:Shadow>
-                <xp:Shadow Z_Depth="4" Margin="20, 0, 0, 0">
-                    <Border Width="100" Height="100" Background="White"/>
-                </xp:Shadow>
-                <xp:Shadow Z_Depth="5" Margin="20, 0, 0, 0">
-                    <Border Width="100" Height="100" Background="White"/>
-                </xp:Shadow>
+        <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible">
+            <StackPanel Margin="0, 30, 0, 0" Width="950">
+                <!--<StackPanel Orientation="Horizontal" Height="200" Background="#EEEEEE" >
+                    <xp:Shadow Z_Depth="1">
+                        <Border Width="100" Height="100" Background="White"/>
+                    </xp:Shadow>
+                    <xp:Shadow Z_Depth="2" Margin="20, 0, 0, 0">
+                        <Border Width="100" Height="100" Background="White"/>
+                    </xp:Shadow>
+                    <xp:Shadow Z_Depth="3" Margin="20, 0, 0, 0">
+                        <Border Width="100" Height="100" Background="White"/>
+                    </xp:Shadow>
+                    <xp:Shadow Z_Depth="4" Margin="20, 0, 0, 0">
+                        <Border Width="100" Height="100" Background="White"/>
+                    </xp:Shadow>
+                    <xp:Shadow Z_Depth="5" Margin="20, 0, 0, 0">
+                        <Border Width="100" Height="100" Background="White"/>
+                    </xp:Shadow>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="200" Background="#EEEEEE" >
+                    <xp:Shadow Z_Depth="1" CornerRadius="10">
+                        <Border Width="100" Height="100" Background="White" CornerRadius="10"/>
+                    </xp:Shadow>
+                    <xp:Shadow Z_Depth="2" CornerRadius="10" Margin="20, 0, 0, 0">
+                        <Border Width="100" Height="100" Background="White" CornerRadius="10"/>
+                    </xp:Shadow>
+                    <xp:Shadow Z_Depth="3" CornerRadius="10" Margin="20, 0, 0, 0">
+                        <Border Width="100" Height="100" Background="White" CornerRadius="10"/>
+                    </xp:Shadow>
+                    <xp:Shadow Z_Depth="4" CornerRadius="10" Margin="20, 0, 0, 0">
+                        <Border Width="100" Height="100" Background="White" CornerRadius="10"/>
+                    </xp:Shadow>
+                    <xp:Shadow Z_Depth="5" CornerRadius="10" Margin="20, 0, 0, 0">
+                        <Border Width="100" Height="100" Background="White" CornerRadius="10"/>
+                    </xp:Shadow>
+                </StackPanel>-->
+                <StackPanel Orientation="Horizontal" Height="200" Background="#EEEEEE" >
+                    <xp:Shadow Z_Depth="1" CornerRadius="0.5" Margin="10">
+                        <xp:XPButton 
+                                 Background="#55ACEE" 
+                                 Foreground="White" 
+                                 IconForeground="White"
+                                 PointerOverBackground="#2599EE"
+                                 PressedBackground="#2099EE"
+                                 IconSize="30" 
+                                 IconPosition="OnlyIcon"
+                                 Width="50"
+                                 Height="50"
+                                 CornerRadius="25">
+                        </xp:XPButton>
+                        <!--<Border Width="50" Height="50" Background="#55ACEE" CornerRadius="25"/>-->
+                    </xp:Shadow>
+                    <!--<xp:Shadow Z_Depth="2" CornerRadius="0.5" Margin="20, 0, 0, 0">
+                        <Border Width="100" Height="100" Background="White" CornerRadius="50"/>
+                    </xp:Shadow>
+                    <xp:Shadow Z_Depth="3" CornerRadius="0.5" Margin="20, 0, 0, 0">
+                        <Border Width="100" Height="100" Background="White" CornerRadius="50"/>
+                    </xp:Shadow>
+                    <xp:Shadow Z_Depth="4" CornerRadius="0.5" Margin="20, 0, 0, 0">
+                        <Border Width="100" Height="100" Background="White" CornerRadius="50"/>
+                    </xp:Shadow>
+                    <xp:Shadow Z_Depth="5" CornerRadius="50" Margin="20, 0, 0, 0">
+                        <Border Width="100" Height="100" Background="White" CornerRadius="50"/>
+                    </xp:Shadow>-->
+                </StackPanel>
             </StackPanel>
-            <StackPanel Margin="0, 10, 0, 0" Orientation="Horizontal" Height="200" Background="#EEEEEE" >
-                <xp:Shadow Z_Depth="1" CornerRadius="10">
-                    <Border Width="100" Height="100" Background="White" CornerRadius="10"/>
-                </xp:Shadow>
-                <xp:Shadow Z_Depth="2" CornerRadius="10" Margin="20, 0, 0, 0">
-                    <Border Width="100" Height="100" Background="White" CornerRadius="10"/>
-                </xp:Shadow>
-                <xp:Shadow Z_Depth="3" CornerRadius="10" Margin="20, 0, 0, 0">
-                    <Border Width="100" Height="100" Background="White" CornerRadius="10"/>
-                </xp:Shadow>
-                <xp:Shadow Z_Depth="4" CornerRadius="10" Margin="20, 0, 0, 0">
-                    <Border Width="100" Height="100" Background="White" CornerRadius="10"/>
-                </xp:Shadow>
-                <xp:Shadow Z_Depth="5" CornerRadius="10" Margin="20, 0, 0, 0">
-                    <Border Width="100" Height="100" Background="White" CornerRadius="10"/>
-                </xp:Shadow>
-            </StackPanel>
-            <StackPanel Margin="0, 10, 0, 0" Orientation="Horizontal" Height="200" Background="#EEEEEE" >
-                <xp:Shadow Z_Depth="1" CornerRadius="0.5">
-                    <Border Width="100" Height="100" Background="White" CornerRadius="50"/>
-                </xp:Shadow>
-                <xp:Shadow Z_Depth="2" CornerRadius="0.5" Margin="20, 0, 0, 0">
-                    <Border Width="100" Height="100" Background="White" CornerRadius="50"/>
-                </xp:Shadow>
-                <xp:Shadow Z_Depth="3" CornerRadius="0.5" Margin="20, 0, 0, 0">
-                    <Border Width="100" Height="100" Background="White" CornerRadius="50"/>
-                </xp:Shadow>
-                <xp:Shadow Z_Depth="4" CornerRadius="0.5" Margin="20, 0, 0, 0">
-                    <Border Width="100" Height="100" Background="White" CornerRadius="50"/>
-                </xp:Shadow>
-                <xp:Shadow Z_Depth="5" CornerRadius="50" Margin="20, 0, 0, 0">
-                    <Border Width="100" Height="100" Background="White" CornerRadius="50"/>
-                </xp:Shadow>
-            </StackPanel>
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
