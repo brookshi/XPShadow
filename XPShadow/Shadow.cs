@@ -26,9 +26,6 @@ namespace XP
         ContentPresenter _contentPresenter;
         Grid _topGrid;
 
-        double _shadowWidth = 0;
-        double _shadowHeight = 0;
-
         public int Z_Depth
         {
             get { return (int)GetValue(Z_DepthProperty); }
@@ -36,6 +33,15 @@ namespace XP
         }
         public static readonly DependencyProperty Z_DepthProperty =
             DependencyProperty.Register("Z_Depth", typeof(int), typeof(Shadow), new PropertyMetadata(2));
+
+        public double CornerRadius
+        {
+            get { return (double)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+        public static readonly DependencyProperty CornerRadiusProperty =
+            DependencyProperty.Register("CornerRadius", typeof(double), typeof(Shadow), new PropertyMetadata(0d));
+
 
         public Shadow()
         {
@@ -71,13 +77,14 @@ namespace XP
             var content = _contentPresenter.Content as FrameworkElement;
             var contentWidth = content.ActualWidth + content.Margin.Left + content.Margin.Right;
             var contentHeight = content.ActualHeight + content.Margin.Top + content.Margin.Bottom;
+            var radius = GetActualCornerRadius(contentWidth);
 
             _shadowCanvas.VerticalAlignment = content.VerticalAlignment;
             _shadowCanvas.HorizontalAlignment = content.HorizontalAlignment;
 
             using (var ds = canvasCommandList.CreateDrawingSession())
             {
-                ds.FillRoundedRectangle(new Rect(0, 0, contentWidth, contentHeight), 0, 0, Color.FromArgb(255, 0, 0, 0));
+                ds.FillRoundedRectangle(new Rect(0, 0, contentWidth, contentHeight), radius, radius, Color.FromArgb(255, 0, 0, 0));
             }
 
             CompositeEffect compositeEffect = new CompositeEffect();
@@ -91,13 +98,21 @@ namespace XP
             });
 
             var bound = compositeEffect.GetBounds(drawSession);
-            _shadowWidth = (bound.Width - contentWidth) / 2;
-            _shadowHeight = (bound.Height - contentHeight) / 2;
-            _contentPresenter.Margin = new Thickness(_shadowWidth, _shadowHeight - maxOffset_Y, _shadowWidth, _shadowHeight + maxOffset_Y);
+            double shadowWidth = (bound.Width - contentWidth) / 2;
+            double shadowHeight = (bound.Height - contentHeight) / 2;
+            _contentPresenter.Margin = new Thickness(shadowWidth, shadowHeight - maxOffset_Y, shadowWidth, shadowHeight + maxOffset_Y);
             _shadowCanvas.Height = bound.Height;
             _shadowCanvas.Width = bound.Width;
             
-            drawSession.DrawImage(compositeEffect, (float)_shadowWidth, (float)_shadowHeight);
+            drawSession.DrawImage(compositeEffect, (float)shadowWidth, (float)shadowHeight);
+        }
+
+        float GetActualCornerRadius(double length)
+        {
+            if (CornerRadius >= 1)
+                return (float)CornerRadius;
+
+            return (float)(length * CornerRadius);
         }
 
         Transform2DEffect CreateShadowEffect(IGraphicsEffectSource source, ShadowParam param)
