@@ -78,6 +78,7 @@ namespace XP
             var contentWidth = content.ActualWidth + content.Margin.Left + content.Margin.Right;
             var contentHeight = content.ActualHeight + content.Margin.Top + content.Margin.Bottom;
             var radius = GetActualCornerRadius(contentWidth);
+            double maxOffset_Y = shadowParams.Max(param => param.Offset_Y);
 
             _shadowCanvas.VerticalAlignment = content.VerticalAlignment;
             _shadowCanvas.HorizontalAlignment = content.HorizontalAlignment;
@@ -87,24 +88,36 @@ namespace XP
                 ds.FillRoundedRectangle(new Rect(0, 0, contentWidth, contentHeight), radius, radius, Color.FromArgb(255, 0, 0, 0));
             }
 
-            CompositeEffect compositeEffect = new CompositeEffect();
-            double maxOffset_Y = 0;
-
-            shadowParams.ForEach(param => 
-            {
-                maxOffset_Y = param.Offset_Y;
-                var shadowEffect = CreateShadowEffect(canvasCommandList, param);
-                compositeEffect.Sources.Add(shadowEffect);
-            });
+            CompositeEffect compositeEffect = CreateEffects(shadowParams, canvasCommandList);
 
             var bound = compositeEffect.GetBounds(drawSession);
             double shadowWidth = (bound.Width - contentWidth) / 2;
             double shadowHeight = (bound.Height - contentHeight) / 2;
+
+            UpdateLayout(maxOffset_Y, bound, shadowWidth, shadowHeight);
+
+            drawSession.DrawImage(compositeEffect, (float)shadowWidth, (float)shadowHeight);
+        }
+
+        private CompositeEffect CreateEffects(List<ShadowParam> shadowParams, CanvasCommandList canvasCommandList)
+        {
+            CompositeEffect compositeEffect = new CompositeEffect();
+
+            shadowParams.ForEach(param =>
+            {
+                var shadowEffect = CreateShadowEffect(canvasCommandList, param);
+                compositeEffect.Sources.Add(shadowEffect);
+            });
+            return compositeEffect;
+        }
+
+        private void UpdateLayout(double maxOffset_Y, Rect bound, double shadowWidth, double shadowHeight)
+        {
             _contentPresenter.Margin = new Thickness(shadowWidth, shadowHeight - maxOffset_Y, shadowWidth, shadowHeight + maxOffset_Y);
             _shadowCanvas.Height = bound.Height;
             _shadowCanvas.Width = bound.Width;
-            
-            drawSession.DrawImage(compositeEffect, (float)shadowWidth, (float)shadowHeight);
+            _topGrid.Height = bound.Height;
+            _topGrid.Width = bound.Width;
         }
 
         float GetActualCornerRadius(double length)
