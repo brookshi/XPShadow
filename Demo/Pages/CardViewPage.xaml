@@ -1,0 +1,46 @@
+﻿<Page
+    x:Class="Demo.Pages.CardViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Demo.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xp="using:XP"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ListView ItemsSource="{x:Bind ItemList}" Width="500">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <!--<Setter Property="HorizontalContentAlignment" Value="Stretch"/>-->
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:ItemModel">
+                    <xp:Shadow Z_Depth="1" CornerRadius="2">
+                        <RelativePanel Background="White" CornerRadius="2" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}, Path=ActualWidth}}">
+                            <Image x:Name="Item_Image" 
+                                   Margin="0, 10, 10, 10"
+                                   Stretch="None"
+                                   RelativePanel.AlignRightWithPanel="True"
+                                   Source="{x:Bind ImagePath}"/>
+                            <TextBlock x:Name="Item_Content" 
+                                       TextWrapping="WrapWholeWords" 
+                                       Text="{x:Bind Content}" 
+                                       RelativePanel.LeftOf="Item_Image"
+                                       RelativePanel.AlignTopWithPanel="True"
+                                       Foreground="Black"
+                                       Margin="10"/>
+                            <TextBlock x:Name="Item_Time"
+                                       Text="{x:Bind Time}"
+                                       RelativePanel.AlignBottomWithPanel="true"
+                                       RelativePanel.AlignLeftWithPanel="True"
+                                       Margin="10, 0, 0, 0"
+                                       Foreground="Gray"/>
+                        </RelativePanel>
+                    </xp:Shadow>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

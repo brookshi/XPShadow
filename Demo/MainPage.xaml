@@ -7,117 +7,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:xp="using:XP">
-
     <Grid>
-        <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible">
-            <StackPanel Margin="0, 30, 0, 0" Width="950">
-                <StackPanel Orientation="Horizontal" Height="200" Background="#EEEEEE" >
-                    <xp:Shadow Z_Depth="1">
-                        <Border Width="100" Height="100" Background="White"/>
-                    </xp:Shadow>
-                    <xp:Shadow Z_Depth="2" Margin="20, 0, 0, 0">
-                        <Border Width="100" Height="100" Background="White"/>
-                    </xp:Shadow>
-                    <xp:Shadow Z_Depth="3" Margin="20, 0, 0, 0">
-                        <Border Width="100" Height="100" Background="White"/>
-                    </xp:Shadow>
-                    <xp:Shadow Z_Depth="4" Margin="20, 0, 0, 0">
-                        <Border Width="100" Height="100" Background="White"/>
-                    </xp:Shadow>
-                    <xp:Shadow Z_Depth="5" Margin="20, 0, 0, 0">
-                        <Border Width="100" Height="100" Background="White"/>
-                    </xp:Shadow>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="200" Background="#EEEEEE" >
-                    <xp:Shadow Z_Depth="1" CornerRadius="10">
-                        <Border Width="100" Height="100" Background="White" CornerRadius="10"/>
-                    </xp:Shadow>
-                    <xp:Shadow Z_Depth="2" CornerRadius="10" Margin="20, 0, 0, 0">
-                        <Border Width="100" Height="100" Background="White" CornerRadius="10"/>
-                    </xp:Shadow>
-                    <xp:Shadow Z_Depth="3" CornerRadius="10" Margin="20, 0, 0, 0">
-                        <Border Width="100" Height="100" Background="White" CornerRadius="10"/>
-                    </xp:Shadow>
-                    <xp:Shadow Z_Depth="4" CornerRadius="10" Margin="20, 0, 0, 0">
-                        <Border Width="100" Height="100" Background="White" CornerRadius="10"/>
-                    </xp:Shadow>
-                    <xp:Shadow Z_Depth="5" CornerRadius="10" Margin="20, 0, 0, 0">
-                        <Border Width="100" Height="100" Background="White" CornerRadius="10"/>
-                    </xp:Shadow>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="200" Background="#EEEEEE" >
-                    <xp:Shadow Z_Depth="1" CornerRadius="0.5" Margin="10">
-                        <xp:XPButton 
-                                 Background="#55ACEE" 
-                                 Foreground="White" 
-                                 IconForeground="White"
-                                 PointerOverBackground="#2599EE"
-                                 PressedBackground="#2099EE"
-                                 IconSize="30" 
-                                 IconPosition="OnlyIcon"
-                                 Width="50"
-                                 Height="50"
-                                 CornerRadius="25"
-                                 BorderThickness="0">
-                            <xp:XPButton.Icon>
-                                <BitmapIcon UriSource="ms-appx:///Assets/twitter.png"/>
-                            </xp:XPButton.Icon>
-                        </xp:XPButton>
-                    </xp:Shadow>
-                    <xp:Shadow Z_Depth="2" CornerRadius="0.5" Margin="10">
-                        <xp:XPButton 
-                             Background="#DD4B39" 
-                             Foreground="White" 
-                             IconForeground="White"
-                             PointerOverBackground="#AA3930"
-                             PressedBackground="#992920"
-                             IconSize="30" 
-                             IconPosition="OnlyIcon"
-                             Width="50"
-                             Height="50"
-                             CornerRadius="25"
-                             BorderThickness="0">
-                            <xp:XPButton.Icon>
-                                <BitmapIcon UriSource="ms-appx:///Assets/gplus.png"/>
-                            </xp:XPButton.Icon>
-                        </xp:XPButton>
-                    </xp:Shadow>
-                    <xp:Shadow Z_Depth="3" CornerRadius="0.5" Margin="10">
-                        <xp:XPButton
-                             Background="Green" 
-                             Foreground="White" 
-                             IconForeground="White"
-                             PointerOverBackground="DarkGreen"
-                             PressedBackground="DarkGreen"
-                             IconSize="30" 
-                             IconPosition="OnlyIcon"
-                             Width="50"
-                             Height="50"
-                             CornerRadius="25"
-                             BorderThickness="0">
-                            <xp:XPButton.Icon>
-                                <FontIcon FontFamily="/Assets/Fonts/fontawesome-webfont.ttf#FontAwesome" Glyph="&#xf1d7;"/>
-                            </xp:XPButton.Icon>
-                        </xp:XPButton>
-                    </xp:Shadow>
-                    <xp:Shadow Z_Depth="4" CornerRadius="0.5" Margin="10">
-                        <xp:XPButton
-                             Background="Orange" 
-                             Foreground="White" 
-                             IconForeground="White"
-                             PointerOverBackground="DarkOrange"
-                             PressedBackground="DarkOrange"
-                             IconSize="20" 
-                             IconPosition="OnlyIcon"
-                             Width="50"
-                             Height="50"
-                             CornerRadius="25"
-                             Icon="Contact"
-                             BorderThickness="0">
-                        </xp:XPButton>
-                    </xp:Shadow>
-                </StackPanel>
-            </StackPanel>
-        </ScrollViewer>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Style="{StaticResource SplitViewTogglePaneButtonStyle}"
+                        VerticalAlignment="Center"
+                        Click="ShowSliptView"/>
+        <SplitView x:Name="SplitView" DisplayMode="Overlay" OpenPaneLength="200" Grid.Row="1">
+            <SplitView.Pane>
+                <ListView>
+                    <ListViewItem x:Name="ButtonPage">
+                        <Button Content="Shadow Buttons" BorderThickness="0" HorizontalContentAlignment="Left" Background="Transparent" Width="200" Click="ButtonPage_Click"/>
+                    </ListViewItem>
+                    <ListViewItem x:Name="CardViewPage">
+                        <Button Content="Shadow Card View" BorderThickness="0" HorizontalContentAlignment="Left" Background="Transparent" Width="200" Click="CardViewPage_Click"/>
+                    </ListViewItem>
+                </ListView>
+            </SplitView.Pane>
+            <Frame x:Name="MainFrame"/>
+        </SplitView>
     </Grid>
 </Page>

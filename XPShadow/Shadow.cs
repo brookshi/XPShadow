@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Graphics.Effects;
 using Windows.UI;
@@ -25,6 +26,8 @@ namespace XP
         CanvasControl _shadowCanvas;
         ContentPresenter _contentPresenter;
         Grid _topGrid;
+
+        double _lastWidth, _lastHeight;
 
         public int Z_Depth
         {
@@ -47,6 +50,12 @@ namespace XP
         {
             this.DefaultStyleKey = typeof(Shadow);
             Loaded += OnLoaded;
+            SizeChanged += Shadow_SizeChanged;
+        }
+
+        private void Shadow_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            _shadowCanvas.Invalidate();
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -56,11 +65,18 @@ namespace XP
 
         private void OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
         {
-            if (Z_Depth < MIN_Z_DEPTH)
+            if (Z_Depth < MIN_Z_DEPTH || !NeedRedraw())
                 return;
 
+            _lastHeight = ActualHeight;
+            _lastWidth = ActualWidth;
             var shadowParams = ShadowConfig.GetShadowParamForZDepth(Math.Min(Z_Depth, MAX_Z_DEPTH));
             DrawShadow(sender, args.DrawingSession, shadowParams);
+        }
+
+        private bool NeedRedraw()
+        {
+            return _lastWidth != ActualWidth || _lastHeight != ActualHeight;
         }
 
         protected override void OnApplyTemplate()
@@ -69,6 +85,16 @@ namespace XP
             _shadowCanvas = (CanvasControl)GetTemplateChild("ShadowCanvas");
             _contentPresenter = (ContentPresenter)GetTemplateChild("PART_ContentPresenter");
             _topGrid = (Grid)GetTemplateChild("PART_Grid");
+        }
+
+        protected override Size MeasureOverride(Size availableSize)
+        {
+            return base.MeasureOverride(availableSize);
+        }
+
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            return base.ArrangeOverride(finalSize);
         }
 
         void DrawShadow(CanvasControl canvasCtrl, CanvasDrawingSession drawSession, List<ShadowParam> shadowParams)
@@ -116,8 +142,6 @@ namespace XP
             _contentPresenter.Margin = new Thickness(shadowWidth, shadowHeight - maxOffset_Y, shadowWidth, shadowHeight + maxOffset_Y);
             _shadowCanvas.Height = bound.Height;
             _shadowCanvas.Width = bound.Width;
-            _topGrid.Height = bound.Height;
-            _topGrid.Width = bound.Width;
         }
 
         float GetActualCornerRadius(double length)
