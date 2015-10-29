@@ -27,8 +27,6 @@ namespace XP
         ContentPresenter _contentPresenter;
         Grid _topGrid;
 
-        double _lastWidth, _lastHeight;
-
         public int Z_Depth
         {
             get { return (int)GetValue(Z_DepthProperty); }
@@ -65,18 +63,11 @@ namespace XP
 
         private void OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
         {
-            if (Z_Depth < MIN_Z_DEPTH || !NeedRedraw())
+            if (Z_Depth < MIN_Z_DEPTH)
                 return;
 
-            _lastHeight = ActualHeight;
-            _lastWidth = ActualWidth;
             var shadowParams = ShadowConfig.GetShadowParamForZDepth(Math.Min(Z_Depth, MAX_Z_DEPTH));
             DrawShadow(sender, args.DrawingSession, shadowParams);
-        }
-
-        private bool NeedRedraw()
-        {
-            return _lastWidth != ActualWidth || _lastHeight != ActualHeight;
         }
 
         protected override void OnApplyTemplate()

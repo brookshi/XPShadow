@@ -9,9 +9,9 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible">
-            <StackPanel Margin="0, 30, 0, 0" Width="950">
-                <StackPanel Orientation="Horizontal" Height="200" Background="#EEEEEE" >
+        <ScrollViewer  Background="#EEEEEE" HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible">
+            <StackPanel Margin="30, 30, 0, 0" Width="950">
+                <StackPanel Orientation="Horizontal" Height="200" >
                     <xp:Shadow Z_Depth="1">
                         <Border Width="80" Height="80" Background="White"/>
                     </xp:Shadow>
@@ -28,7 +28,7 @@
                         <Border Width="80" Height="80" Background="White"/>
                     </xp:Shadow>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="200" Background="#EEEEEE" >
+                <StackPanel Orientation="Horizontal" Height="200" >
                     <xp:Shadow Z_Depth="1" CornerRadius="10">
                         <Border Width="80" Height="80" Background="White" CornerRadius="10"/>
                     </xp:Shadow>
@@ -45,7 +45,7 @@
                         <Border Width="80" Height="80" Background="White" CornerRadius="10"/>
                     </xp:Shadow>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="200" Background="#EEEEEE" >
+                <StackPanel Orientation="Horizontal" Height="150" >
                     <xp:Shadow Z_Depth="1" CornerRadius="0.5" Margin="10">
                         <xp:XPButton 
                                  Background="#55ACEE" 
@@ -114,6 +114,36 @@
                              CornerRadius="25"
                              Icon="Contact"
                              BorderThickness="0">
+                        </xp:XPButton>
+                    </xp:Shadow>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="150" >
+                    <xp:Shadow Z_Depth="2" CornerRadius="2" Margin="10">
+                        <xp:XPButton 
+                                 Background="#FAFAFA" 
+                                 Content="FORCE STOP"
+                                 Foreground="#545454" 
+                                 PointerOverBackground="#2599EE"
+                                 PressedBackground="#2099EE"
+                                 IconPosition="NoIcon"
+                                 Width="120"
+                                 Height="40"
+                                 CornerRadius="2"
+                                 BorderThickness="0">
+                        </xp:XPButton>
+                    </xp:Shadow>
+                    <xp:Shadow Z_Depth="2" CornerRadius="2" Margin="10">
+                        <xp:XPButton 
+                                 Background="#FF5252" 
+                                 Content="UNINSTALL"
+                                 Foreground="#EEEEEE" 
+                                 PointerOverBackground="#2599EE"
+                                 PressedBackground="#2099EE"
+                                 IconPosition="NoIcon"
+                                 Width="120"
+                                 Height="40"
+                                 CornerRadius="2"
+                                 BorderThickness="0">
                         </xp:XPButton>
                     </xp:Shadow>
                 </StackPanel>
