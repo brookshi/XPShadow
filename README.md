@@ -22,7 +22,9 @@ Usage
 
 Nuget
 --------
+``` java
 PM> Install-Package XPShadow
+```
 
 License
 --------
