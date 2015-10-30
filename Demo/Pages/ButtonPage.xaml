@@ -45,7 +45,7 @@
                         <Border Width="80" Height="80" Background="White" CornerRadius="10"/>
                     </xp:Shadow>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="150" >
+                <StackPanel Orientation="Horizontal" Height="120" >
                     <xp:Shadow Z_Depth="1" CornerRadius="0.5" Margin="10">
                         <xp:XPButton 
                                  Background="#55ACEE" 
@@ -117,7 +117,7 @@
                         </xp:XPButton>
                     </xp:Shadow>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="150" >
+                <StackPanel Orientation="Horizontal" Height="90" >
                     <xp:Shadow Z_Depth="2" CornerRadius="2" Margin="10">
                         <xp:XPButton 
                                  Background="#FAFAFA" 
