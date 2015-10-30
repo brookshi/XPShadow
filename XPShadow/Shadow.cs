@@ -78,16 +78,6 @@ namespace XP
             _topGrid = (Grid)GetTemplateChild("PART_Grid");
         }
 
-        protected override Size MeasureOverride(Size availableSize)
-        {
-            return base.MeasureOverride(availableSize);
-        }
-
-        protected override Size ArrangeOverride(Size finalSize)
-        {
-            return base.ArrangeOverride(finalSize);
-        }
-
         void DrawShadow(CanvasControl canvasCtrl, CanvasDrawingSession drawSession, List<ShadowParam> shadowParams)
         {
             var canvasCommandList = new CanvasCommandList(canvasCtrl);
@@ -108,8 +98,8 @@ namespace XP
             CompositeEffect compositeEffect = CreateEffects(shadowParams, canvasCommandList);
 
             var bound = compositeEffect.GetBounds(drawSession);
-            double shadowWidth = (bound.Width - contentWidth) / 2;
-            double shadowHeight = (bound.Height - contentHeight) / 2;
+            double shadowWidth = Math.Abs(bound.X);
+            double shadowHeight = Math.Abs(bound.Y);
 
             UpdateLayout(maxOffset_Y, bound, shadowWidth, shadowHeight);
 
