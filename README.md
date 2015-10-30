@@ -20,6 +20,10 @@ Usage
   </xp:Shadow>
 ```
 
+Nuget
+--------
+PM> Install-Package XPShadow
+
 License
 --------
 ``` 
