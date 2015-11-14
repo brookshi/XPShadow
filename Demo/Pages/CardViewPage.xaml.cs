@@ -29,6 +29,7 @@ namespace Demo.Pages
         public CardViewPage()
         {
             this.InitializeComponent();
+            NavigationCacheMode = NavigationCacheMode.Required;
             InitData();
         }
 

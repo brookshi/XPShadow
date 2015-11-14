@@ -47,18 +47,12 @@ namespace XP
         public Shadow()
         {
             this.DefaultStyleKey = typeof(Shadow);
-            Loaded += OnLoaded;
             SizeChanged += Shadow_SizeChanged;
         }
 
         private void Shadow_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             _shadowCanvas.Invalidate();
-        }
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            _shadowCanvas.Draw += OnDraw;
         }
 
         private void OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
@@ -76,6 +70,8 @@ namespace XP
             _shadowCanvas = (CanvasControl)GetTemplateChild("ShadowCanvas");
             _contentPresenter = (ContentPresenter)GetTemplateChild("PART_ContentPresenter");
             _topGrid = (Grid)GetTemplateChild("PART_Grid");
+
+            _shadowCanvas.Draw += OnDraw;
         }
 
         void DrawShadow(CanvasControl canvasCtrl, CanvasDrawingSession drawSession, List<ShadowParam> shadowParams)

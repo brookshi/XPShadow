@@ -9,7 +9,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:Shadow">
                     <Grid x:Name="PART_Grid" 
-                          Background="{TemplateBinding Background}" >
+                          Background="{TemplateBinding Background}">
                         <win2d:CanvasControl x:Name="ShadowCanvas" HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                           VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
                         <ContentPresenter
