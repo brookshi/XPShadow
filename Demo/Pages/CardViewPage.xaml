@@ -1,42 +1,41 @@
-﻿<Page
-    x:Class="Demo.Pages.CardViewPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Demo.Pages"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:xp="using:XP"
-    mc:Ignorable="d">
+﻿<Page x:Class="Demo.Pages.CardViewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Demo.Pages"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:xp="using:XP"
+      mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView ItemsSource="{x:Bind ItemList}" Width="500">
+        <ListView Width="500" ItemsSource="{x:Bind ItemList}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:ItemModel">
-                    <xp:Shadow Z_Depth="2" CornerRadius="2">
+                    <xp:Shadow CornerRadius="2" Z_Depth="2">
                         <RelativePanel Background="White" CornerRadius="2">
-                            <Image x:Name="Item_Image" 
+                            <Image x:Name="Item_Image"
                                    Margin="0, 10, 10, 10"
-                                   Stretch="None"
                                    RelativePanel.AlignRightWithPanel="True"
-                                   Source="{x:Bind ImagePath}"/>
-                            <TextBlock x:Name="Item_Content" 
-                                       TextWrapping="WrapWholeWords" 
-                                       Text="{x:Bind Content}" 
-                                       RelativePanel.LeftOf="Item_Image"
-                                       RelativePanel.AlignTopWithPanel="True"
+                                   Source="{x:Bind ImagePath}"
+                                   Stretch="None" />
+                            <TextBlock x:Name="Item_Content"
+                                       Margin="10"
                                        Foreground="Black"
-                                       Margin="10"/>
+                                       RelativePanel.AlignTopWithPanel="True"
+                                       RelativePanel.LeftOf="Item_Image"
+                                       Text="{x:Bind Content}"
+                                       TextWrapping="WrapWholeWords" />
                             <TextBlock x:Name="Item_Time"
-                                       Text="{x:Bind Time}"
+                                       Margin="10, 0, 0, 0"
+                                       Foreground="Gray"
                                        RelativePanel.AlignBottomWithPanel="true"
                                        RelativePanel.AlignLeftWithPanel="True"
-                                       Margin="10, 0, 0, 0"
-                                       Foreground="Gray"/>
+                                       Text="{x:Bind Time}" />
                         </RelativePanel>
                     </xp:Shadow>
                 </DataTemplate>

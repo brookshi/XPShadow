@@ -19,6 +19,43 @@ using System.Collections.Generic;
 
 namespace XP
 {
+    public class EffectKey
+    {
+        public EffectKey(int width, int height, int zDepth, double cornerRadius)
+        {
+            Width = width;
+            Height = height;
+            Z_Depth = zDepth;
+            CornerRadius = cornerRadius;
+        }
+
+        public int Width { get; set; }
+
+        public int Height { get; set; }
+
+        public int Z_Depth { get; set; }
+
+        public double CornerRadius { get; set; }
+
+        public override int GetHashCode()
+        {
+            return Width.GetHashCode() ^
+                Height.GetHashCode() ^
+                Z_Depth.GetHashCode() ^
+                CornerRadius.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            var key = obj as EffectKey;
+            return key != null &&
+                key.Width == Width &&
+                key.Height == Height &&
+                key.Z_Depth == Z_Depth &&
+                key.CornerRadius == CornerRadius;
+        }
+    }
+
     public class ShadowParam
     {
         public byte Alpha { get; set; }
