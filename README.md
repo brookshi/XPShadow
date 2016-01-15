@@ -1,6 +1,6 @@
 # XPShadow
 
-shadow for uwp controls
+shadow for uwp controls base on win2d
 
 Display
 --------
