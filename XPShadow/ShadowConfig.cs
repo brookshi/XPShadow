@@ -14,6 +14,7 @@
 //   limitations under the License. 
 #endregion
 
+using Microsoft.Graphics.Canvas.Effects;
 using System;
 using System.Collections.Generic;
 

@@ -20,9 +20,12 @@ using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Graphics.Effects;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -31,8 +34,6 @@ namespace XP
 {
     public sealed class Shadow : ContentControl
     {
-        static Dictionary<EffectKey, CompositeEffect> _effectCache = new Dictionary<EffectKey, CompositeEffect>();
-
         const int MAX_Z_DEPTH = 5;
         const int MIN_Z_DEPTH = 1;
 
@@ -80,6 +81,12 @@ namespace XP
             DrawShadow(sender, args.DrawingSession, shadowParams);
         }
 
+        static void Log(string msg)
+        {
+            var path = ApplicationData.Current.LocalFolder + "\\log.txt";
+            File.AppendAllText(path, msg+"\r\n");
+        }
+
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -110,7 +117,7 @@ namespace XP
                 ds.FillRoundedRectangle(new Rect(0, 0, contentWidth, contentHeight), radius, radius, Color.FromArgb(255, 0, 0, 0));
             }
 
-            CompositeEffect compositeEffect = GetEffect(shadowParams, canvasCommandList);
+            CompositeEffect compositeEffect = CreateEffects(shadowParams, canvasCommandList);
 
             var bound = compositeEffect.GetBounds(drawSession);
             double shadowWidth = Math.Abs(bound.X);
@@ -121,24 +128,7 @@ namespace XP
             DrawEffect(drawSession, compositeEffect, shadowWidth, shadowHeight);
         }
 
-        private CompositeEffect GetEffect(List<ShadowParam> shadowParams, CanvasCommandList canvasCommandList)
-        {
-            var effectKey = new EffectKey((int)ActualWidth, (int)ActualHeight, Z_Depth, CornerRadius);
-            CompositeEffect compositeEffect;
-            if (_effectCache.ContainsKey(effectKey))
-            {
-                compositeEffect = _effectCache[effectKey];
-            }
-            else
-            {
-                compositeEffect = CreateEffects(shadowParams, canvasCommandList);
-                _effectCache[effectKey] = compositeEffect;
-            }
-
-            return compositeEffect;
-        }
-
-        private static void DrawEffect(CanvasDrawingSession drawSession, CompositeEffect compositeEffect, double shadowWidth, double shadowHeight)
+        private void DrawEffect(CanvasDrawingSession drawSession, CompositeEffect compositeEffect, double shadowWidth, double shadowHeight)
         {
             drawSession.DrawImage(compositeEffect, (float)shadowWidth, (float)shadowHeight);
         }
