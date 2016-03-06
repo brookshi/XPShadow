@@ -57,11 +57,23 @@ namespace XP
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register("CornerRadius", typeof(double), typeof(Shadow), new PropertyMetadata(0d));
 
+        public bool IsCached { get; set; }
+
 
         public Shadow()
         {
             this.DefaultStyleKey = typeof(Shadow);
             SizeChanged += Shadow_SizeChanged;
+            Unloaded += Shadow_Unloaded;
+        }
+
+        private void Shadow_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (!IsCached && _shadowCanvas != null)
+            {
+                _shadowCanvas.RemoveFromVisualTree();
+                _shadowCanvas = null;
+            }
         }
 
         private void Shadow_SizeChanged(object sender, SizeChangedEventArgs e)

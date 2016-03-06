@@ -16,7 +16,9 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:ItemModel">
-                    <xp:Shadow CornerRadius="2" Z_Depth="2">
+                    <xp:Shadow CornerRadius="2"
+                               IsCached="True"
+                               Z_Depth="2">
                         <RelativePanel Background="White" CornerRadius="2">
                             <Image x:Name="Item_Image"
                                    Margin="0, 10, 10, 10"
