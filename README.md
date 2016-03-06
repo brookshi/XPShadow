@@ -14,6 +14,7 @@ Usage
 --------
 ``` java
  <xp:Shadow 
+    IsCached="True"    //default is False, if page use NavigationCacheMode = NavigationCacheMode.Required, should set IsCached=True 
     Z_Depth="1"        //shadow depth, from 1 to 5
     CornerRadius="10"> // shadow corner radius, 0-1 for percent of width, > 1 for actual value
       <Border Width="80" Height="80" Background="White" CornerRadius="10"/>
