@@ -93,12 +93,6 @@ namespace XP
             DrawShadow(sender, args.DrawingSession, shadowParams);
         }
 
-        static void Log(string msg)
-        {
-            var path = ApplicationData.Current.LocalFolder + "\\log.txt";
-            File.AppendAllText(path, msg+"\r\n");
-        }
-
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -111,7 +105,7 @@ namespace XP
                 _shadowCanvas.Draw += OnDraw;
             }
         }
-
+        
         void DrawShadow(CanvasControl canvasCtrl, CanvasDrawingSession drawSession, List<ShadowParam> shadowParams)
         {
             var canvasCommandList = new CanvasCommandList(canvasCtrl);
