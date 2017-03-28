@@ -40,5 +40,11 @@ namespace Demo
             SplitView.IsPaneOpen = false;
             MainFrame.Navigate(typeof(CardViewPage));
         }
+
+        private void NineGrid_Click(object sender, RoutedEventArgs e)
+        {
+            SplitView.IsPaneOpen = false;
+            MainFrame.Navigate(typeof(test));
+        }
     }
 }
